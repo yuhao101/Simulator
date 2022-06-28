@@ -73,13 +73,13 @@ def generate_driver(gdf_nodes, result):
     df_driver_info['itinerary_node_list'] = [[] for _ in range(len(df_driver_info))]
     df_driver_info['itinerary_segment_dis_list'] = [[] for _ in range(len(df_driver_info))]
     print(df_driver_info.shape)
-    pickle.dump(df_driver_info, open(data_path + 'driver_info' + '.pickle', 'wb'))
+    pickle.dump(df_driver_info, open(data_path + 'hongkong_driver_info' + '.pickle', 'wb'))
 
 
 def sample_by_order_distribution(driver_num):
     zone_num = dict()
     order_num = 0
-    order = pickle.load(open('./input/order.pickle', 'rb'))
+    order = pickle.load(open('./input/hongkong_processed_order.pickle', 'rb'))
     for i in range(36000, 79200):
         if i in order.keys():
             for single_order in order[i]:
@@ -90,19 +90,27 @@ def sample_by_order_distribution(driver_num):
                 else:
                     zone_num[zone] = 1
 
-    driver = pickle.load(open('./input/driver_info.pickle', 'rb'))
+    driver = pickle.load(open('./hongkong_driver_info.pickle', 'rb'))
     driver_info = pd.DataFrame()
     for i, zone in enumerate(zone_num):
         if i == len(zone_num)-1:
             driver_sample = driver_num - len(driver_info)
-            temp_driver_info = driver[driver['grid_id'] == zone].sample(n=driver_sample, replace=True)
+            driver_sample = min(driver_sample, len(driver[driver['grid_id'] == zone]))
+            temp_driver_info = driver[driver['grid_id'] == zone].sample(n=driver_sample)
+            driver = driver[driver['grid_id'] != zone]
             driver_info = pd.concat([driver_info, temp_driver_info], axis=0)
+            left_driver = driver.sample(n=driver_num-len(driver_info))
+            driver_info = pd.concat([driver_info, left_driver], axis=0)
+            break
         frac = zone_num[zone]/order_num
         driver_sample = int(driver_num * frac)
-        temp_driver_info = driver[driver['grid_id'] == zone].sample(n=driver_sample, replace=True)
+        driver_sample = min(driver_sample, len(driver[driver['grid_id'] == zone]))
+        temp_driver_info = driver[driver['grid_id'] == zone].sample(n=driver_sample)
+        driver = driver[driver['grid_id'] != zone]
         driver_info = pd.concat([driver_info, temp_driver_info], axis=0)
     print(driver_info.shape)
-    pickle.dump(driver_info, open('./input/driver_info_distribution' + '.pickle', 'wb'))
+    driver_info['driver_id'] = [i for i in range(driver_num)]
+    pickle.dump(driver_info, open('./input/hongkong_driver_distribution' + '.pickle', 'wb'))
 
 
 def statistic_order_num_per_hour():
@@ -121,5 +129,5 @@ def statistic_order_num_per_hour():
 
 if __name__ == '__main__':
     # generate_driver(gdf_nodes=gdf_nodes, result=result)
-    # sample_by_order_distribution(2000)
-    statistic_order_num_per_hour()
+    sample_by_order_distribution(2000)
+    # statistic_order_num_per_hour()
