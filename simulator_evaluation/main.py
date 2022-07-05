@@ -1,8 +1,8 @@
-from simulator_env import Simulator
-from config import *
-from utilities import save_data
-from Create_Drivers import create_driver
-from Create_Records import create_records
+from simulator_evaluation.simulator_env import Simulator
+from simulator_evaluation.config import *
+from simulator_evaluation.utilities import save_data
+from simulator_evaluation.Create_Drivers import create_driver
+from simulator_evaluation.Create_Records import create_records
 
 if __name__ == "__main__":
     driver_num = [int(2000 * i / 10) for i in range(1, 11)]
