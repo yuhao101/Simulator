@@ -1,8 +1,8 @@
-from simulator_pattern import *
+from evaluation.simulator_evaluation.simulator_pattern import *
 from numpy.random import choice
 
 import math
-from utilities import *
+from evaluation.simulator_evaluation.utilities import *
 
 class Simulator:
     def __init__(self, **kwargs):

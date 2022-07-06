@@ -12,7 +12,7 @@ input information:
 ** All the inputs are obtained from env, thus we do not need to alter parameters here
 """
 
-from path import *
+from evaluation.simulator_evaluation.path import *
 import pickle
 
 class SimulatorPattern(object):

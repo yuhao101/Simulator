@@ -1,5 +1,5 @@
-from path import *
-from Evaluate import *
+from evaluation.simulator_evaluation.path import *
+from evaluation.simulator_evaluation.Evaluate import *
 import matplotlib.pyplot as plt
 import re
 import pandas as pd

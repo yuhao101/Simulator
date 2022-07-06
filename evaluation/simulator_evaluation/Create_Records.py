@@ -1,4 +1,4 @@
-from config import *
+from evaluation.simulator_evaluation.config import *
 import random
 import pickle
 import numpy as np

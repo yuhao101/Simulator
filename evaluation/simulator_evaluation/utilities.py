@@ -1,8 +1,8 @@
 import numpy as np
 import pandas as pd
 from copy import deepcopy
-from dispatch_alg import dispatch_alg_array
-from path import *
+from evaluation.simulator_evaluation.dispatch_alg import dispatch_alg_array
+from evaluation.simulator_evaluation.path import *
 import time
 import pickle
 
