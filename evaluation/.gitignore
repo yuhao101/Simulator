@@ -1,0 +1,4 @@
+__pycache__/
+.idea/
+/simulator_evaluation/Figures
+/simulator_evaluation/Results
