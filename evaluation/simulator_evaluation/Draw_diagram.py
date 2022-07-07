@@ -178,7 +178,10 @@ def draw_picture(x, y, name, mode, num):
     plt.ylabel(y_label_name, fontsize=fs)
     picture_name = name + '_' + mode + '=' + str(num)
 
-    plt.savefig(load_path + 'Figures/' + picture_name + '.jpg', dpi=600, bbox_inches='tight')
+    if not os.path.exists(load_path + 'Figures/' +mode):
+        os.mkdir(load_path + 'Figures/' +mode)
+        
+    plt.savefig(load_path + 'Figures/' +mode + '/' + picture_name + '.jpg', dpi=600, bbox_inches='tight')
     plt.show()
     plt.cla()
     plt.close("all")
@@ -215,6 +218,7 @@ def draw_one_picture(mode, num, trip_time):
     draw_picture(x, pickup_time, 'Pick-up time', mode, num)
     draw_picture(x, waiting_time, 'Waiting time', mode, num)
 
+
 if __name__ == "__main__":
     plt.rc('font', family='Times New Roman')
     production_func_params = get_production_func_params()
@@ -223,11 +227,13 @@ if __name__ == "__main__":
     files= os.listdir(result_path)
     files.sort()
     time = []
+    files = files[:1]
     for file in files:
         result = pickle.load(open(result_path + file, 'rb'))
         time.append(result['trip_time'])
     trip_time = int(np.array(time).mean())
 
+    print('finish loading files', files)
     orders = []
     drivers = []
     best_model = []
@@ -242,8 +248,13 @@ if __name__ == "__main__":
             m, m_e = get_best_model(result)
             best_model.append(list(m))
             best_model_mape.append(list(m_e))
+    print('finish loading best_model')
+
     x=np.array(orders)/2
     y=np.array(drivers)
+
+    print(best_model)
+    print(best_model_mape)
 
     labels=np.array(np.array(best_model)[:,:1].T)[0]
     errors = np.array(np.array(best_model_mape)[:,:1].T)[0]
@@ -258,5 +269,5 @@ if __name__ == "__main__":
     errors = np.array(np.array(best_model_mape)[:,3:4].T)[0]
     draw_best_model(x, y, labels, errors, 'waiting_time_best_model')
 
-    draw_one_picture('fix_driver', 200, trip_time)
+    # draw_one_picture('fix_driver', 200, trip_time)
     draw_one_picture('fix_order', 0.02, trip_time)
