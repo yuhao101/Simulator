@@ -406,7 +406,7 @@ class Simulator:
         node_list = []
         grid_list = []
         for i in range(len(lng_array)):
-            id = node_coord_to_id[(lat_array[i], lng_array[i])]
+            id = node_coord_to_id[(lng_array[i],lat_array[i])]
             node_list.append(id)
             grid_list.append(result[result['node_id'] == id ]['grid_id'].tolist()[0])
         real_time_driver_table['node_id'] = node_list

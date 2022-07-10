@@ -29,8 +29,8 @@ node_id = gdf_nodes.index.tolist()
 node_id_to_lat_lng = {}
 node_coord_to_id = {}
 for i in range(len(lat_list)):
-    node_id_to_lat_lng[node_id[i]] = (lat_list[i], lng_list[i])
-    node_coord_to_id[(lat_list[i], lng_list[i])] = node_id[i]
+    node_id_to_lat_lng[node_id[i]] = (lng_list[i], lat_list[i])
+    node_coord_to_id[(lng_list[i], lat_list[i])] = node_id[i]
 
 center = (
 (env_params['east_lng'] + env_params['west_lng']) / 2, (env_params['north_lat'] + env_params['south_lat']) / 2)
@@ -93,8 +93,8 @@ def distance(coord_1, coord_2):
     """
     manhattan_dis = 0
     try:
-        lat1, lon1, = coord_1
-        lat2, lon2 = coord_2
+        lon1, lat1= coord_1
+        lon2, lat2 = coord_2
         lon1, lat1, lon2, lat2 = map(radians, [lon1, lat1, lon2, lat2])
         r = 6371
         lat_dis = r * acos(min(1.0, cos(lat1) ** 2 * cos(lon1 - lon2) + sin(lat1) ** 2))
@@ -122,8 +122,8 @@ def distance_array(coord_1, coord_2):
     """
     manhattan_dis = list()
     for i in range(len(coord_1)):
-        lat1, lon1, = coord_1[i]
-        lat2, lon2 = coord_2[i]
+        lon1, lat1, = coord_1[i]
+        lon2, lat2 = coord_2[i]
         lon1, lat1, lon2, lat2 = map(radians, [lon1, lat1, lon2, lat2])
         r = 6371
         lat_dis = r * acos(min(1.0, cos(lat1) ** 2 * cos(lon1 - lon2) + sin(lat1) ** 2))
@@ -172,8 +172,8 @@ def route_generation_array(origin_coord_array, dest_coord_array, mode='rg'):
     # itinerary_node_list的每一项为一个list，包含了对应路线中的各个节点编号
     # itinerary_segment_dis_list的每一项为一个array，包含了对应路线中的各节点到相邻下一节点的距离
     # dis_array包含了各行程的总里程
-    origin_node_list = get_nodeId_from_coordinate(origin_coord_array[:, 1], origin_coord_array[:, 0])
-    dest_node_list = get_nodeId_from_coordinate(dest_coord_array[:, 1], dest_coord_array[:, 0])
+    origin_node_list = get_nodeId_from_coordinate(origin_coord_array[:, 0], origin_coord_array[:, 1])
+    dest_node_list = get_nodeId_from_coordinate(dest_coord_array[:, 0], dest_coord_array[:, 1])
     itinerary_node_list = []
     itinerary_segment_dis_list = []
     dis_array = []
@@ -501,7 +501,6 @@ def order_dispatch(wait_requests, driver_table, maximal_pickup_distance=950, dis
             #                                                                                     driver_loc_array[:, :2],
             #                                                                                   mode='drop_end')
             dis_array = distance_array(request_array[:, :2], driver_loc_array[:, :2])
-
             flag = np.where(dis_array <= maximal_pickup_distance)[0]
             if len(flag) > 0:
                 order_driver_pair = np.vstack(
@@ -543,7 +542,7 @@ def driver_online_offline_decision(driver_table, current_time):
 
 
 
-def get_nodeId_from_coordinate(lat, lng):
+def get_nodeId_from_coordinate(lng, lat):
     """
 
     :param lat: latitude
@@ -554,8 +553,8 @@ def get_nodeId_from_coordinate(lat, lng):
     :rtype: string
     """
     node_list = []
-    for i in range(len(lat)):
-        x = node_coord_to_id[(lat[i],lng[i])]
+    for i in range(len(lng)):
+        x = node_coord_to_id[(lng[i],lat[i])]
         node_list.append(x)
     return node_list
 

@@ -29,8 +29,8 @@ node_id = gdf_nodes.index.tolist()
 node_id_to_lat_lng = {}
 node_coord_to_id = {}
 for i in range(len(lat_list)):
-    node_id_to_lat_lng[node_id[i]] = (lat_list[i], lng_list[i])
-    node_coord_to_id[(lat_list[i], lng_list[i])] = node_id[i]
+    node_id_to_lat_lng[node_id[i]] = (lng_list[i], lat_list[i])
+    node_coord_to_id[(lng_list[i], lat_list[i])] = node_id[i]
 
 center = (
     (env_params['east_lng'] + env_params['west_lng']) / 2, (env_params['north_lat'] + env_params['south_lat']) / 2)
