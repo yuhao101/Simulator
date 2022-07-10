@@ -145,6 +145,7 @@ def calculate_metrics_passenger(record_path):
                     if single_record[-2] == 1:
                         pickup_end_time = min(single_record[-1], pickup_end_time)
                         break
+                print(pickup_end_time - matching_time)
                 temp_data.append(matching_time - order_to_time[record[0][2]])
                 temp_data.append(pickup_end_time - matching_time)
                 temp_data.append(record[-1][-1] - pickup_end_time)

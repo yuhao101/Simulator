@@ -13,14 +13,16 @@ import os
 if __name__ == "__main__":
     driver_num = [int(2000*i/10) for i in range(1, 11)]
     order_sample_frac = [i/10 for i in range(1, 11)]
-    max_distance_num = [i/2 for i in range(1, 11, 1)]
-    time_interval = [i for i in range(5, 55, 5)]
+    max_distance_num = [2]
+    # max_distance_num = [i/2 for i in range(1, 11, 1)]
+    # time_interval = [i for i in range(5, 55, 5)]
+    time_interval = [5]
     print('max_distance_num', max_distance_num)
     print('time_interval', time_interval)
     print('driver_num', driver_num)
     print('order_sample_frac', order_sample_frac)
-    cruise_flag = [False]
-    pickup_flag = ['rg']
+    cruise_flag = [True]
+    pickup_flag = ['ma']
     delivery_flag = ['rg']
     # track的格式为[{'driver_1' : [[lng, lat, status, time_a], [lng, lat, status, time_b]],
     # 'driver_2' : [[lng, lat, status, time_a], [lng, lat, status, time_b]]},
@@ -28,8 +30,8 @@ if __name__ == "__main__":
     for pc_flag in pickup_flag:
         for dl_flag in delivery_flag:
             for cr_flag in cruise_flag:
-                for single_driver_num in driver_num[9:]:
-                    for single_order_sample_frac in order_sample_frac[9:]:
+                for single_driver_num in driver_num:
+                    for single_order_sample_frac in order_sample_frac:
                         for single_max_distance_num in max_distance_num:
                             for single_time_interval in time_interval:
                                 env_params['pickup_mode'] = pc_flag
