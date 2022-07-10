@@ -15,7 +15,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-def calculate_metrics(record_path):
+def calculate_metrics(record_path, sample_frac):
     records = pickle.load(open(record_path, 'rb'))
     order = pickle.load(open('./input/order.pickle', 'rb'))
     order_num_time = {}
@@ -24,9 +24,9 @@ def calculate_metrics(record_path):
     matched_num = 0
     time_to_order = {}
     driver_no_cruising_time = {}
-    for i in range(36000, 79200, 5):
+    for i in range(36000, 79200, sample_frac):
         temp_count = 0
-        for j in range(0, 5):
+        for j in range(0, sample_frac):
             if (i+j) in order.keys():
                 current_num += len(order[i+j])
                 temp_count += len(order[i+j])
@@ -41,12 +41,12 @@ def calculate_metrics(record_path):
                 matched_num += 1
                 for single_record in record:
                     if single_record[-2] == 1.0:
-                        for second in range(i*5+36000, int(single_record[-1])):
+                        for second in range(i*sample_frac+36000, int(single_record[-1])):
                             driver_no_cruising_time[driver][0].add(second)
                         for second in range(int(single_record[-1]), int(record[-1][-1])):
                             driver_no_cruising_time[driver][1].add(second)
                         break
-        matched_rate_time[i*5+36000] = matched_num/order_num_time[i*5+36000]
+        matched_rate_time[i*sample_frac+36000] = matched_num/order_num_time[i*sample_frac+36000]
     driver_state_info = np.array([])
     for key in matched_rate_time.keys():
         cruising_count = 0
@@ -55,7 +55,7 @@ def calculate_metrics(record_path):
                 cruising_count += 1
         driver_state_info = np.append(driver_state_info, cruising_count)
     order_info = np.array(list(time_to_order.values()))
-    return order_info.sum(), matched_num, matched_rate_time[79195], order_info.mean(), order_info.max(), driver_state_info.mean()
+    return order_info.sum(), matched_num, matched_rate_time[79200-sample_frac], order_info.mean(), order_info.max(), driver_state_info.mean()
 
 
 def calculate_metrics_passenger_by_time(record_path):
@@ -126,7 +126,6 @@ def calculate_metrics_passenger(record_path):
     records = pickle.load(open(record_path, 'rb'))
     order = pickle.load(open('./input/order.pickle', 'rb'))
     order_to_time = {}
-    prematching_time = {}
     for i in range(36000, 79200, 5):
         for j in range(0, 5):
             if (i + j) in order.keys():
@@ -170,7 +169,7 @@ def generate_simulator_evaluation_data(save_dir):
             for record_file in record_file_list:
                 record_file_path = record_path+'/'+record_file
                 matching_time, pickup_time, trip_time = calculate_metrics_passenger(record_file_path)
-                total_requests, matched_requests, matching_rate, mean_waiting_orders, max_waiting_orders, vacant_vehicles = calculate_metrics(record_file_path)
+                total_requests, matched_requests, matching_rate, mean_waiting_orders, max_waiting_orders, vacant_vehicles = calculate_metrics(record_file_path, int(sample_frac))
                 result = {'fleet_size': int(driver_num), 'total_time': 43200, 'total_requests': total_requests, 'speed': 6.33,
                           'matched_requests': matched_requests, 'matching_rate': matching_rate, 'matching_time': matching_time,
                           'pickup_time': pickup_time, 'trip_time': trip_time, 'effective_orders_total_waiting_time': matching_time+pickup_time,
