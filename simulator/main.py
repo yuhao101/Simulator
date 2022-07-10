@@ -56,9 +56,12 @@ if __name__ == "__main__":
                                             str(single_order_sample_frac)
                                 if not os.path.exists(file_path):
                                     os.makedirs(file_path)
-                                os.makedirs(file_path+'/records')
-                                os.makedirs(file_path+'/passengers')
-                                os.makedirs(file_path+'/match_and_cancel')
+                                if not os.path.exists(file_path+'/records'):
+                                    os.makedirs(file_path+'/records')
+                                if not os.path.exists(file_path + '/passengers'):
+                                    os.makedirs(file_path+'/passengers')
+                                if not os.path.exists(file_path + '/match_and_cancel'):
+                                    os.makedirs(file_path+'/match_and_cancel')
                                 pickle.dump(track_record, open(file_path+'/records' + '/records_max_distance_'+
                                                                str(single_max_distance_num)+ '_time_interval_' +
                                                                str(single_time_interval) + '.pickle', 'wb'))
