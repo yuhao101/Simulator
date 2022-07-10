@@ -22,7 +22,7 @@ if __name__ == "__main__":
     print('driver_num', driver_num)
     print('order_sample_frac', order_sample_frac)
     cruise_flag = [True]
-    pickup_flag = ['rg']
+    pickup_flag = ['ma']
     delivery_flag = ['rg']
     # track的格式为[{'driver_1' : [[lng, lat, status, time_a], [lng, lat, status, time_b]],
     # 'driver_2' : [[lng, lat, status, time_a], [lng, lat, status, time_b]]},
