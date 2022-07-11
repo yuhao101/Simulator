@@ -253,3 +253,10 @@ def fcfs_func(x, c):
 
 def residuals_fcfs(c, y, x):
     return y - fcfs_func(x, c)
+
+
+if __name__ == '__main__':
+    file = open('./Results/orders_0.2_drivers_100_record.pickle', 'rb')
+    content = pickle.load(file)
+    print(content.keys())
+    print(content)

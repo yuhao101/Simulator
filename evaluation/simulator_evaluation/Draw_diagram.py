@@ -180,11 +180,12 @@ def draw_picture(x, y, name, mode, num):
 
     if not os.path.exists(load_path + 'Figures/' +mode):
         os.mkdir(load_path + 'Figures/' +mode)
-        
+
     plt.savefig(load_path + 'Figures/' +mode + '/' + picture_name + '.jpg', dpi=600, bbox_inches='tight')
     plt.show()
     plt.cla()
     plt.close("all")
+
 
 def draw_one_picture(mode, num, trip_time):
     file_list = get_file_list(num, mode)
@@ -212,6 +213,39 @@ def draw_one_picture(mode, num, trip_time):
             waiting_time.append(res_data[3])
     if mode == 'fix_driver':
         x=np.array(x)/2
+
+    draw_picture(x, matching_rate, 'Matching rate', mode, num)
+    draw_picture(x, matching_time, 'Matching time', mode, num)
+    draw_picture(x, pickup_time, 'Pick-up time', mode, num)
+    draw_picture(x, waiting_time, 'Waiting time', mode, num)
+
+
+def draw_true_road_network_simulator_picture(path, mode, num, trip_time):
+    file_list = get_file_list(num, mode)
+    x = []
+    matching_rate = []
+    matching_time = []
+    pickup_time = []
+    waiting_time = []
+    if mode == 'fix_driver':
+        para_x = 1
+    elif mode == 'fix_order':
+        para_x = 3
+
+    for file in file_list:
+        result = pickle.load(open(path + file, 'rb'))
+
+        if float(file.split('_')[1]) / 2 > result['fleet_size'] / trip_time:
+            pass
+        else:
+            x.append(float(file.split('_')[para_x]))
+            res_data = get_data(result)
+            matching_rate.append(res_data[0])
+            matching_time.append(res_data[1])
+            pickup_time.append(res_data[2])
+            waiting_time.append(res_data[3])
+    if mode == 'fix_driver':
+        x = np.array(x) / 2
 
     draw_picture(x, matching_rate, 'Matching rate', mode, num)
     draw_picture(x, matching_time, 'Matching time', mode, num)
@@ -269,5 +303,9 @@ if __name__ == "__main__":
     errors = np.array(np.array(best_model_mape)[:,3:4].T)[0]
     draw_best_model(x, y, labels, errors, 'waiting_time_best_model')
 
+    print(trip_time)
     # draw_one_picture('fix_driver', 200, trip_time)
     draw_one_picture('fix_order', 0.02, trip_time)
+    road_network_file_path = './Result_road'
+    draw_true_road_network_simulator_picture(road_network_file_path,
+                                             'fix_order', 0.02, trip_time)
