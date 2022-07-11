@@ -144,7 +144,6 @@ def calculate_metrics_passenger(record_path):
                     if single_record[-2] == 1:
                         pickup_end_time = min(single_record[-1], pickup_end_time)
                         break
-                print(pickup_end_time - matching_time)
                 temp_data.append(matching_time - order_to_time[record[0][2]])
                 temp_data.append(pickup_end_time - matching_time)
                 temp_data.append(record[-1][-1] - pickup_end_time)
@@ -168,8 +167,9 @@ def generate_simulator_evaluation_data(save_dir):
             record_file_list = os.listdir(record_path)
             for record_file in record_file_list:
                 record_file_path = record_path+'/'+record_file
+                time_interval = record_file.split('.')[0].split('_')[-1]
                 matching_time, pickup_time, trip_time = calculate_metrics_passenger(record_file_path)
-                total_requests, matched_requests, matching_rate, mean_waiting_orders, max_waiting_orders, vacant_vehicles = calculate_metrics(record_file_path, int(sample_frac))
+                total_requests, matched_requests, matching_rate, mean_waiting_orders, max_waiting_orders, vacant_vehicles = calculate_metrics(record_file_path, int(time_interval))
                 result = {'fleet_size': int(driver_num), 'total_time': 43200, 'total_requests': total_requests, 'speed': 6.33,
                           'matched_requests': matched_requests, 'matching_rate': matching_rate, 'matching_time': matching_time,
                           'pickup_time': pickup_time, 'trip_time': trip_time, 'effective_orders_total_waiting_time': matching_time+pickup_time,
