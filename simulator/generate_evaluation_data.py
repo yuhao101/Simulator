@@ -15,7 +15,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-def calculate_metrics(record_path, sample_frac):
+def calculate_metrics(record_path, time_interval, sample_frac):
     records = pickle.load(open(record_path, 'rb'))
     order = pickle.load(open('./input/order.pickle', 'rb'))
     order_num_time = {}
@@ -24,12 +24,12 @@ def calculate_metrics(record_path, sample_frac):
     matched_num = 0
     time_to_order = {}
     driver_no_cruising_time = {}
-    for i in range(36000, 79200, sample_frac):
+    for i in range(36000, 79200, time_interval):
         temp_count = 0
-        for j in range(0, sample_frac):
+        for j in range(0, time_interval):
             if (i+j) in order.keys():
-                current_num += len(order[i+j])
-                temp_count += len(order[i+j])
+                current_num += len(order[i+j])*sample_frac
+                temp_count += len(order[i+j])*sample_frac
         order_num_time[i] = current_num
         time_to_order[i] = temp_count
     for i, time in enumerate(tqdm(records, desc="generate driver info")):
@@ -41,12 +41,12 @@ def calculate_metrics(record_path, sample_frac):
                 matched_num += 1
                 for single_record in record:
                     if single_record[-2] == 1.0:
-                        for second in range(i*sample_frac+36000, int(single_record[-1])):
+                        for second in range(i*time_interval+36000, int(single_record[-1])):
                             driver_no_cruising_time[driver][0].add(second)
                         for second in range(int(single_record[-1]), int(record[-1][-1])):
                             driver_no_cruising_time[driver][1].add(second)
                         break
-        matched_rate_time[i*sample_frac+36000] = matched_num/order_num_time[i*sample_frac+36000]
+        matched_rate_time[i*time_interval+36000] = matched_num/order_num_time[i*time_interval+36000]
     driver_state_info = np.array([])
     for key in matched_rate_time.keys():
         cruising_count = 0
@@ -55,7 +55,7 @@ def calculate_metrics(record_path, sample_frac):
                 cruising_count += 1
         driver_state_info = np.append(driver_state_info, cruising_count)
     order_info = np.array(list(time_to_order.values()))
-    return order_info.sum(), matched_num, matched_rate_time[79200-sample_frac], order_info.mean(), order_info.max(), driver_state_info.mean()
+    return order_info.sum(), matched_num, matched_rate_time[79200-time_interval], order_info.mean(), order_info.max(), driver_state_info.mean()
 
 
 def calculate_metrics_passenger_by_time(record_path):
@@ -157,7 +157,7 @@ def generate_simulator_evaluation_data(save_dir):
     # print("订单总数目：", count)
     result_path = './new_experiment/ma_rg_cruise=True/'
     driver_dir_list = os.listdir(result_path)
-    driver_dir_list = [item for item in driver_dir_list if item.startswith('driver')]
+    driver_dir_list = [item for item in driver_dir_list if item.startswith('driver_num_200')]
     for driver_dir in driver_dir_list:
         driver_num = driver_dir.split('_')[2]
         sample_dir_list = os.listdir(result_path+driver_dir)
@@ -170,9 +170,8 @@ def generate_simulator_evaluation_data(save_dir):
                 time_interval = record_file.split('.')[-2].split('_')[-1]
                 matching_time, pickup_time, trip_time = calculate_metrics_passenger(record_file_path)
                 total_requests, matched_requests, matching_rate, mean_waiting_orders, max_waiting_orders, vacant_vehicles = calculate_metrics(record_file_path, int(time_interval))
-                total_requests *= sample_frac
                 result = {'fleet_size': int(driver_num), 'total_time': 43200, 'total_requests': total_requests, 'speed': 6.33,
-                          'matched_requests': matched_requests, 'matching_rate': matched_requests/total_requests, 'matching_time': matching_time,
+                          'matched_requests': matched_requests, 'matching_rate': matching_rate, 'matching_time': matching_time,
                           'pickup_time': pickup_time, 'trip_time': trip_time, 'effective_orders_total_waiting_time': matching_time+pickup_time,
                           'mean_waiting_orders': mean_waiting_orders, 'max_waiting_orders': max_waiting_orders, 'vacant_vehicles': vacant_vehicles
                           }
