@@ -17,7 +17,7 @@ env_params = {
 'driver_file_name' : 'drivers',
 'experiment_date': 'test_day',
 'grid_system_side_length' : 20318,  # unit: m
-'grid_system_grid_length': 20318,  # unit: m
+'grid_system_grid_length': 2031,  # unit: m
 'ave_order' : 0.02,  # order number per delta_t
 'num_drivers': 2000,
 }
