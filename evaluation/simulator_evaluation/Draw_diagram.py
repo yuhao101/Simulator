@@ -203,15 +203,15 @@ def draw_one_picture(mode, num, trip_time):
     for file in file_list:
         result = pickle.load(open(result_path + file, 'rb'))
        
-        if float(file.split('_')[1])/2 > result['fleet_size']/trip_time:
-            pass
-        else:
-            x.append(float(file.split('_')[para_x]))
-            res_data = get_data(result)
-            matching_rate.append(res_data[0])
-            matching_time.append(res_data[1])
-            pickup_time.append(res_data[2])
-            waiting_time.append(res_data[3])
+        # if float(file.split('_')[1])/2 > result['fleet_size']/trip_time:
+        #     pass
+        # else:
+        x.append(float(file.split('_')[para_x]))
+        res_data = get_data(result)
+        matching_rate.append(res_data[0])
+        matching_time.append(res_data[1])
+        pickup_time.append(res_data[2])
+        waiting_time.append(res_data[3])
     if mode == 'fix_driver':
         x=np.array(x)/2
 
@@ -305,8 +305,8 @@ if __name__ == "__main__":
     # draw_best_model(x, y, labels, errors, 'waiting_time_best_model')
 
     print(trip_time)
-    # draw_one_picture('fix_driver', 200, trip_time)
-    draw_one_picture('fix_order', 0.2, trip_time)
+    draw_one_picture('fix_driver', 200, trip_time)
+    # draw_one_picture('fix_order', 0.2, trip_time)
     # road_network_file_path = './Result_road'
     # draw_true_road_network_simulator_picture(road_network_file_path,
     #                                          'fix_order', 0.02, trip_time)
