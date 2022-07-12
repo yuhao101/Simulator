@@ -232,19 +232,19 @@ def draw_true_road_network_simulator_picture(path, mode, num, trip_time):
         para_x = 1
     elif mode == 'fix_order':
         para_x = 3
-
+    print(file_list)
     for file in file_list:
         result = pickle.load(open(path + file, 'rb'))
 
-        if float(file.split('_')[1]) / 2 > result['fleet_size'] / trip_time:
-            pass
-        else:
-            x.append(float(file.split('_')[para_x]))
-            res_data = get_data(result)
-            matching_rate.append(res_data[0])
-            matching_time.append(res_data[1])
-            pickup_time.append(res_data[2])
-            waiting_time.append(res_data[3])
+        # if float(file.split('_')[1]) / 2 > result['fleet_size'] / trip_time:
+        #     pass
+        # else:
+        x.append(float(file.split('_')[para_x]))
+        res_data = get_data(result)
+        matching_rate.append(res_data[0])
+        matching_time.append(res_data[1])
+        pickup_time.append(res_data[2])
+        waiting_time.append(res_data[3])
     if mode == 'fix_driver':
         x = np.array(x) / 2
 
@@ -259,7 +259,7 @@ if __name__ == "__main__":
     # production_func_params = get_production_func_params()
     model_list = ['Perfect Matching','FCFS','Cobb-Douglas Production Function','M/M/1 Queuing Model', 'M/M/1/k Queuing Model', 'M/M/N Queuing Model','Batch Matching']
 
-    result_path = '../../simulator/Result'
+    result_path = '../../simulator/Result/'
     files= os.listdir(result_path)
     files.sort()
     time = []
