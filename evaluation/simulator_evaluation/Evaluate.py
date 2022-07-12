@@ -186,8 +186,9 @@ def residuals(p, y, ln_Nv, ln_Nc):
 
 def get_production_func_params():
     files = os.listdir(result_path)
+    files_list = [item for item in files if item.startswith('order')]
     collected_data = []
-    for file in files:
+    for file in files_list:
         f = pickle.load(open(result_path + file, 'rb'))
         collected_data.append([f['vacant_vehicles'], f['mean_waiting_orders'], f['total_requests'] /f['total_time']])
     ln_collected_data = np.log(collected_data)
