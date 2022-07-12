@@ -8,7 +8,7 @@ if __name__ == "__main__":
     driver_num = [int(2000 * i / 10) for i in range(1, 11)]
     order_sample_frac = [i / 10 for i in range(1, 11)]
     # max_distance_num = [i/2 for i in range(1, 11, 1)]
-    max_distance_num = [2]
+    max_distance_num = [2000]
     # time_interval = [i for i in range(5, 55, 5)]
     time_interval = [5]
     print('max_distance_num', max_distance_num)
