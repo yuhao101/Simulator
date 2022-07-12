@@ -259,6 +259,7 @@ if __name__ == "__main__":
     # production_func_params = get_production_func_params()
     model_list = ['Perfect Matching','FCFS','Cobb-Douglas Production Function','M/M/1 Queuing Model', 'M/M/1/k Queuing Model', 'M/M/N Queuing Model','Batch Matching']
 
+    result_path = '../../simulator/Result'
     files= os.listdir(result_path)
     files.sort()
     time = []
@@ -305,8 +306,8 @@ if __name__ == "__main__":
     # draw_best_model(x, y, labels, errors, 'waiting_time_best_model')
 
     print(trip_time)
-    draw_one_picture('fix_driver', 200, trip_time)
+
+    # draw_one_picture('fix_driver', 200, trip_time)
     # draw_one_picture('fix_order', 0.2, trip_time)
-    # road_network_file_path = './Result_road'
-    # draw_true_road_network_simulator_picture(road_network_file_path,
-    #                                          'fix_order', 0.02, trip_time)
+    draw_true_road_network_simulator_picture(result_path,
+                                             'fix_order', 0.02, trip_time)
