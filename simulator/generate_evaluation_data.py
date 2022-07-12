@@ -28,10 +28,10 @@ def calculate_metrics(record_path, time_interval, sample_frac):
         temp_count = 0
         for j in range(0, time_interval):
             if (i+j) in order.keys():
-                current_num += len(order[i+j])*sample_frac
-                temp_count += len(order[i+j])*sample_frac
-        order_num_time[i] = current_num
-        time_to_order[i] = temp_count
+                current_num += len(order[i+j])
+                temp_count += len(order[i+j])
+        order_num_time[i] = np.rint(current_num*sample_frac)
+        time_to_order[i] = np.rint(temp_count*sample_frac)
     for i, time in enumerate(tqdm(records, desc="generate driver info")):
         for driver in time:
             if driver not in driver_no_cruising_time.keys():
@@ -55,7 +55,7 @@ def calculate_metrics(record_path, time_interval, sample_frac):
                 cruising_count += 1
         driver_state_info = np.append(driver_state_info, cruising_count)
     order_info = np.array(list(time_to_order.values()))
-    return order_info.sum(), matched_num, matched_rate_time[79200-time_interval], order_info.mean(), order_info.max(), driver_state_info.mean()
+    return order_info.sum(), matched_num, matched_num/order_info.sum(), order_info.mean(), order_info.max(), driver_state_info.mean()
 
 
 def calculate_metrics_passenger_by_time(record_path):
@@ -155,7 +155,7 @@ def calculate_metrics_passenger(record_path):
 def generate_simulator_evaluation_data(save_dir):
 
     # print("订单总数目：", count)
-    result_path = './new_experiment/ma_rg_cruise=True/'
+    result_path = './new_experiment/rg_rg_cruise=True/'
     driver_dir_list = os.listdir(result_path)
     driver_dir_list = [item for item in driver_dir_list if item.startswith('driver_num_200')]
     for driver_dir in driver_dir_list:
