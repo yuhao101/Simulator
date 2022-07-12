@@ -310,4 +310,4 @@ if __name__ == "__main__":
     # draw_one_picture('fix_driver', 200, trip_time)
     # draw_one_picture('fix_order', 0.2, trip_time)
     draw_true_road_network_simulator_picture(result_path,
-                                             'fix_order', 0.02, trip_time)
+                                             'fix_driver', 200, trip_time)
