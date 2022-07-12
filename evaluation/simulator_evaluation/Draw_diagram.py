@@ -262,7 +262,7 @@ if __name__ == "__main__":
     files= os.listdir(result_path)
     files.sort()
     time = []
-    files_list = [item for item in files if item.startswith('order')]
+    files_list = [item for item in files if 'drivers_200_record' in item]
     for file in files_list:
         result = pickle.load(open(result_path + file, 'rb'))
         time.append(result['trip_time'])
