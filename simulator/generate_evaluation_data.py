@@ -51,7 +51,7 @@ def calculate_metrics(record_path, time_interval, sample_frac):
     for key in matched_rate_time.keys():
         cruising_count = 0
         for driver in driver_no_cruising_time.keys():
-            if key not in driver_no_cruising_time[driver][0] and key not in driver_no_cruising_time[driver][1]:
+            if key not in driver_no_cruising_time[driver][1]:
                 cruising_count += 1
         driver_state_info = np.append(driver_state_info, cruising_count)
     order_info = np.array(list(time_to_order.values()))
@@ -155,9 +155,9 @@ def calculate_metrics_passenger(record_path):
 def generate_simulator_evaluation_data(save_dir):
 
     # print("订单总数目：", count)
-    result_path = './new_experiment/rg_rg_cruise=True/'
+    result_path = './new_experiment/ma_rg_cruise=True/'
     driver_dir_list = os.listdir(result_path)
-    driver_dir_list = [item for item in driver_dir_list if item.startswith('driver_num_200')]
+    # driver_dir_list = [item for item in driver_dir_list if item.startswith('driver_num_200')]
     for driver_dir in driver_dir_list:
         driver_num = driver_dir.split('_')[2]
         sample_dir_list = os.listdir(result_path+driver_dir)
@@ -176,7 +176,6 @@ def generate_simulator_evaluation_data(save_dir):
                           'mean_waiting_orders': mean_waiting_orders, 'max_waiting_orders': max_waiting_orders, 'vacant_vehicles': vacant_vehicles
                           }
                 file_name = '/orders_' + str(sample_frac) + '_drivers_' + str(driver_num) + '_record.pickle'
-                print(result)
                 pickle.dump(result, open(save_dir+file_name, 'wb'))
 
 
