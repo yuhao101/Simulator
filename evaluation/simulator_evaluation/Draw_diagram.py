@@ -236,15 +236,15 @@ def draw_true_road_network_simulator_picture(path, mode, num, trip_time):
     for file in file_list:
         result = pickle.load(open(path + file, 'rb'))
 
-        # if float(file.split('_')[1]) / 2 > result['fleet_size'] / trip_time:
-        #     pass
-        # else:
-        x.append(float(file.split('_')[para_x]))
-        res_data = get_data(result)
-        matching_rate.append(res_data[0])
-        matching_time.append(res_data[1])
-        pickup_time.append(res_data[2])
-        waiting_time.append(res_data[3])
+        if float(file.split('_')[1]) / 2 > result['fleet_size'] / trip_time:
+            pass
+        else:
+            x.append(float(file.split('_')[para_x]))
+            res_data = get_data(result)
+            matching_rate.append(res_data[0])
+            matching_time.append(res_data[1])
+            pickup_time.append(res_data[2])
+            waiting_time.append(res_data[3])
     if mode == 'fix_driver':
         x = np.array(x) / 2
 
@@ -270,6 +270,7 @@ if __name__ == "__main__":
     trip_time = int(np.array(time).mean())
 
     print('finish loading files', files_list)
+
     # orders = []
     # drivers = []
     # best_model = []
@@ -309,5 +310,6 @@ if __name__ == "__main__":
 
     # draw_one_picture('fix_driver', 200, trip_time)
     # draw_one_picture('fix_order', 0.2, trip_time)
-    draw_true_road_network_simulator_picture(result_path,
-                                             'fix_driver', 200, trip_time)
+    for driver_num in range(200, 2200, 200):
+        draw_true_road_network_simulator_picture(result_path,
+                                             'fix_driver', driver_num, trip_time)
