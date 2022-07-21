@@ -171,7 +171,7 @@ def generate_simulator_evaluation_data(save_dir):
                 matching_time, pickup_time, trip_time = calculate_metrics_passenger(record_file_path)
                 total_requests, matched_requests, matching_rate, mean_waiting_orders, max_waiting_orders, vacant_vehicles = calculate_metrics(record_file_path, int(time_interval), sample_frac)
                 result = {'fleet_size': int(driver_num), 'total_time': 43200, 'total_requests': total_requests, 'speed': 6.33,
-                          'matched_requests': matched_requests, 'matching_rate': matching_rate, 'matching_time': matching_time,
+                          'matched_requests': matched_requests, 'matching_rate': matched_requests/43200, 'matching_time': matching_time,
                           'pickup_time': pickup_time, 'trip_time': trip_time, 'effective_orders_total_waiting_time': matching_time+pickup_time,
                           'mean_waiting_orders': mean_waiting_orders, 'max_waiting_orders': max_waiting_orders, 'vacant_vehicles': vacant_vehicles
                           }
