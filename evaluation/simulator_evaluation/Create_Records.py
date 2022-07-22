@@ -61,7 +61,7 @@ class Records:
     def get_keys(self):
         self.keys = []
         for i in range(self.time_period):
-            self.keys.append(str(i*self.request_interval))
+            self.keys.append(str(36000+i*self.request_interval))
 
     def get_num_record(self):
         self.get_keys()

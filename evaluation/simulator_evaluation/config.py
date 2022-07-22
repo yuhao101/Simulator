@@ -18,6 +18,7 @@ env_params = {
 'experiment_date': 'test_day',
 'grid_system_side_length' : 20318,  # unit: m
 'grid_system_grid_length': 2031,  # unit: m
-'ave_order' : 0.02,  # order number per delta_t
+'ave_order' : 6.2,  # order number per delta_t
 'num_drivers': 2000,
+'time_period': 8640
 }

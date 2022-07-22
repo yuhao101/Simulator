@@ -6,7 +6,7 @@ from evaluation.simulator_evaluation.Create_Records import create_records
 
 if __name__ == "__main__":
     driver_num = [int(2000 * i / 10) for i in range(1, 11)]
-    order_sample_frac = [i / 10 for i in range(1, 11)]
+    order_sample_frac = [6.2*i / 10 for i in range(1, 11)]
     # max_distance_num = [i/2 for i in range(1, 11, 1)]
     max_distance_num = [2000]
     # time_interval = [i for i in range(5, 55, 5)]
@@ -15,6 +15,9 @@ if __name__ == "__main__":
     print('time_interval', time_interval)
     print('driver_num', driver_num)
     print('order_sample_frac', order_sample_frac)
+
+    driver_num = [1000]
+
     # track的格式为[{'driver_1' : [[lng, lat, status, time_a], [lng, lat, status, time_b]],
     # 'driver_2' : [[lng, lat, status, time_a], [lng, lat, status, time_b]]},
     # {'driver_1' : [[lng, lat, status, time_a], [lng, lat, status, time_b]]}]
