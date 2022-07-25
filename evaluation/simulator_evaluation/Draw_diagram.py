@@ -4,6 +4,8 @@ import matplotlib.pyplot as plt
 import re
 import pandas as pd
 import pickle
+from tqdm import tqdm
+
 
 def get_best_model(result):
     model_error = []
@@ -20,6 +22,7 @@ def get_best_model(result):
     best_model_mape = model_error[best_model, list(np.arange(len(real_data)))]/real_data
     return best_model, best_model_mape
 
+
 def get_model_name(labels):
     res = []
     for la in labels:
@@ -28,7 +31,7 @@ def get_model_name(labels):
     return res
 
 
-def draw_best_model(x, y, labels, errors, name):
+def draw_best_model(type, x, y, labels, errors, name, trip_time):
     fs = 20
 
     fig, ax = plt.subplots()
@@ -69,12 +72,13 @@ def draw_best_model(x, y, labels, errors, name):
     plt.xlabel('Arrival rate of orders (pax/sec)', fontsize=20)
 
     plt.ylabel('Number of drivers (veh)', fontsize=20)
-
-    plt.savefig(load_path + 'Figures/' + name + '.jpg', dpi=600, bbox_inches='tight')
-    plt.show()
+    if not os.path.exists(load_path + 'Figures/' + type):
+        os.mkdir(load_path + 'Figures/' + type)
+    plt.savefig(load_path + 'Figures/' + type + '/' + name + '.jpg', dpi=600, bbox_inches='tight')
     plt.clf()
 
-def get_file_list(num, mode):
+
+def get_file_list(num, mode, files_list):
     if mode == 'fix_driver':
         para_select = 3
         para_sort = 1
@@ -87,6 +91,7 @@ def get_file_list(num, mode):
             file_list.append(file)
     file_list.sort(key=lambda ele:float(re.split(r'[____]',ele)[para_sort]))
     return file_list
+
 
 def get_data(result):
     res = []
@@ -101,6 +106,7 @@ def get_data(result):
     res = np.array(res).T.tolist()
     return res
 
+
 def filter_line(x, y):
     new_x  = []
     new_y = []
@@ -109,6 +115,7 @@ def filter_line(x, y):
             new_x.append(x[i])
             new_y.append(y[i])
     return new_x, new_y
+
 
 def get_draw_data(y, name, mode):
     location = "lower right"
@@ -137,7 +144,7 @@ def get_draw_data(y, name, mode):
     return y, model_list, location
 
 
-def draw_picture(x, y, name, mode, num):
+def draw_picture(x, y, name, type, mode, num):
     fs = 20
     y, model_list, location = get_draw_data(y, name, mode)
     fig, ax = plt.subplots()
@@ -178,80 +185,190 @@ def draw_picture(x, y, name, mode, num):
     plt.ylabel(y_label_name, fontsize=fs)
     picture_name = name + '_' + mode + '=' + str(num)
 
-    if not os.path.exists(load_path + 'Figures/' +mode):
-        os.mkdir(load_path + 'Figures/' +mode)
-
-    plt.savefig(load_path + 'Figures/' +mode + '/' + picture_name + '.jpg', dpi=600, bbox_inches='tight')
-    plt.show()
+    if not os.path.exists(load_path + 'Figures/' + type):
+        os.mkdir(load_path + 'Figures/' + type)
+    if not os.path.exists(load_path + 'Figures/' + type + '/' + mode):
+        os.mkdir(load_path + 'Figures/' + type + '/' + mode)
+    plt.savefig(load_path + 'Figures/' + type + '/' + mode + '/' + picture_name + '.jpg', dpi=600, bbox_inches='tight')
     plt.cla()
     plt.close("all")
 
 
-def draw_one_picture(mode, num, trip_time):
-    file_list = get_file_list(num, mode)
-    print(file_list)
+def draw_one_picture(type, mode, num, trip_time, files_list, result_path):
+    file_list = get_file_list(num, mode, files_list)
     x = []
     matching_rate = []
     matching_time = []
     pickup_time = []
     waiting_time = []
-    if mode == 'fix_driver':
-        para_x = 1
-    elif mode == 'fix_order':
-        para_x = 3
+    if type == 'true_data':
+        if mode == 'fix_driver':
+            para_x = 1
+        elif mode == 'fix_order':
+            para_x = 3
+        for file in file_list:
+            result = pickle.load(open(result_path + file, 'rb'))
 
-    for file in file_list:
+            if float(file.split('_')[1]) * 6.2 / 5 > result['fleet_size'] / trip_time:
+                pass
+            else:
+                if para_x == 1:
+                    x.append(float(file.split('_')[para_x])*6.2)
+                else:
+                    x.append(float(file.split('_')[para_x]))
+                res_data = get_data(result)
+                matching_rate.append(res_data[0])
+                matching_time.append(res_data[1])
+                pickup_time.append(res_data[2])
+                waiting_time.append(res_data[3])
+    else:
+        if mode == 'fix_driver':
+            para_x = 1
+        elif mode == 'fix_order':
+            para_x = 3
+        for file in file_list:
+            result = pickle.load(open(result_path + file, 'rb'))
+
+            if float(file.split('_')[1])/5 > result['fleet_size']/trip_time:
+                pass
+            else:
+                x.append(float(file.split('_')[para_x]))
+                res_data = get_data(result)
+                matching_rate.append(res_data[0])
+                matching_time.append(res_data[1])
+                pickup_time.append(res_data[2])
+                waiting_time.append(res_data[3])
+    if mode == 'fix_driver':
+        x=np.array(x)/5
+    if np.array(x).size > 0:
+        draw_picture(x, matching_rate, 'Matching rate', type, mode, num)
+        draw_picture(x, matching_time, 'Matching time', type, mode, num)
+        draw_picture(x, pickup_time, 'Pick-up time', type, mode, num)
+        draw_picture(x, waiting_time, 'Waiting time', type, mode, num)
+
+
+def draw_evaluation():
+    result_path = './Results/'
+    files = os.listdir(result_path)
+    files.sort()
+    time = []
+    files_list = [item for item in files if 'drivers_' in item]
+    for file in files_list:
         result = pickle.load(open(result_path + file, 'rb'))
-       
-        # if float(file.split('_')[1])/2 > result['fleet_size']/trip_time:
-        #     pass
-        # else:
-        x.append(float(file.split('_')[para_x]))
-        res_data = get_data(result)
-        matching_rate.append(res_data[0])
-        matching_time.append(res_data[1])
-        pickup_time.append(res_data[2])
-        waiting_time.append(res_data[3])
-    if mode == 'fix_driver':
-        x=np.array(x)/2
+        time.append(result['trip_time'])
+    trip_time = int(np.array(time).mean())
+    print(trip_time)
+    # draw_one_picture('evaluation', 'fix_driver', 1000, trip_time, files_list, result_path)
 
-    draw_picture(x, matching_rate, 'Matching rate', mode, num)
-    draw_picture(x, matching_time, 'Matching time', mode, num)
-    draw_picture(x, pickup_time, 'Pick-up time', mode, num)
-    draw_picture(x, waiting_time, 'Waiting time', mode, num)
+    for driver_num in tqdm(range(200, 2200, 200), desc='handling'):
+        draw_one_picture('evaluation', 'fix_driver', driver_num, trip_time, files_list, result_path)
+    #
+    for order_sample in tqdm(range(1, 11, 1), desc='handling'):
+        draw_one_picture('evaluation', 'fix_order', order_sample*6.2/10, trip_time, files_list, result_path)
 
 
-def draw_true_road_network_simulator_picture(path, mode, num, trip_time):
-    file_list = get_file_list(num, mode)
-    x = []
-    matching_rate = []
-    matching_time = []
-    pickup_time = []
-    waiting_time = []
-    if mode == 'fix_driver':
-        para_x = 1
-    elif mode == 'fix_order':
-        para_x = 3
-    print(file_list)
-    for file in file_list:
-        result = pickle.load(open(path + file, 'rb'))
+def draw_raw_simulator():
+    result_path = '../../simulator/Result/'
+    files = os.listdir(result_path)
+    files.sort()
+    time = []
+    files_list = [item for item in files if 'drivers_' in item]
+    for file in files_list:
+        result = pickle.load(open(result_path + file, 'rb'))
+        time.append(result['trip_time'])
+    trip_time = int(np.array(time).mean())
+    print(trip_time)
+    # draw_one_picture('true_data', 'fix_driver', 1000, trip_time, files_list, result_path)
 
-        if float(file.split('_')[1]) / 2 > result['fleet_size'] / trip_time:
+    for driver_num in tqdm(range(200, 2200, 200), desc='handling'):
+        draw_one_picture('true_data', 'fix_driver', driver_num, trip_time, files_list, result_path)
+    for order_sample in tqdm(range(1, 11, 1), desc='handling'):
+        draw_one_picture('true_data', 'fix_order', order_sample/10, trip_time, files_list, result_path)
+
+
+def draw_best_model_raw_simulaor():
+    result_path = '../../simulator/Result/'
+    files = os.listdir(result_path)
+    time = []
+    files_list = [item for item in files if 'drivers_' in item]
+    for file in files_list:
+        result = pickle.load(open(result_path + file, 'rb'))
+        time.append(result['trip_time'])
+    trip_time = int(np.array(time).mean())
+    print(trip_time)
+    orders = []
+    drivers = []
+    best_model = []
+    best_model_mape = []
+    for file in tqdm(files_list, desc='loading best model'):
+        result = pickle.load(open(result_path + file, 'rb'))
+        if float(file.split('_')[1])*6.2/5 > result['fleet_size']/trip_time:
             pass
         else:
-            x.append(float(file.split('_')[para_x]))
-            res_data = get_data(result)
-            matching_rate.append(res_data[0])
-            matching_time.append(res_data[1])
-            pickup_time.append(res_data[2])
-            waiting_time.append(res_data[3])
-    if mode == 'fix_driver':
-        x = np.array(x) / 2
+            orders.append(float(file.split('_')[1])*6.2)
+            drivers.append(float(file.split('_')[3]))
+            m, m_e = get_best_model(result)
+            best_model.append(list(m))
+            best_model_mape.append(list(m_e))
 
-    draw_picture(x, matching_rate, 'Matching rate', mode, num)
-    draw_picture(x, matching_time, 'Matching time', mode, num)
-    draw_picture(x, pickup_time, 'Pick-up time', mode, num)
-    draw_picture(x, waiting_time, 'Waiting time', mode, num)
+    x=np.array(orders)/2
+    y=np.array(drivers)
+
+    labels=np.array(np.array(best_model)[:,:1].T)[0]
+    errors = np.array(np.array(best_model_mape)[:,:1].T)[0]
+    draw_best_model('true_data', x, y, labels,errors, 'matching_rate_best_model', trip_time)
+    labels=np.array(np.array(best_model)[:,1:2].T)[0]
+    errors = np.array(np.array(best_model_mape)[:,1:2].T)[0]
+    draw_best_model('true_data', x, y, labels, errors,'matching_time_best_model', trip_time)
+    labels=np.array(np.array(best_model)[:,2:3].T)[0]
+    errors = np.array(np.array(best_model_mape)[:,2:3].T)[0]
+    draw_best_model('true_data', x, y, labels, errors, 'pickup_time_best_model', trip_time)
+    labels=np.array(np.array(best_model)[:,3:4].T)[0]
+    errors = np.array(np.array(best_model_mape)[:,3:4].T)[0]
+    draw_best_model('true_data', x, y, labels, errors, 'waiting_time_best_model', trip_time)
+
+
+def draw_best_model_evaluation():
+    result_path = './Results/'
+    files = os.listdir(result_path)
+    time = []
+    files_list = [item for item in files if 'drivers_' in item]
+    for file in files_list:
+        result = pickle.load(open(result_path + file, 'rb'))
+        time.append(result['trip_time'])
+    trip_time = int(np.array(time).mean())
+    print(trip_time)
+    orders = []
+    drivers = []
+    best_model = []
+    best_model_mape = []
+    for file in tqdm(files_list, desc='loading best model'):
+        result = pickle.load(open(result_path + file, 'rb'))
+        if float(file.split('_')[1])/2 > result['fleet_size']/trip_time:
+            pass
+        else:
+            orders.append(float(file.split('_')[1]))
+            drivers.append(float(file.split('_')[3]))
+            m, m_e = get_best_model(result)
+            best_model.append(list(m))
+            best_model_mape.append(list(m_e))
+
+    x=np.array(orders)/2
+    y=np.array(drivers)
+
+
+    labels=np.array(np.array(best_model)[:,:1].T)[0]
+    errors = np.array(np.array(best_model_mape)[:,:1].T)[0]
+    draw_best_model('evaluation', x, y, labels,errors, 'matching_rate_best_model', trip_time)
+    labels=np.array(np.array(best_model)[:,1:2].T)[0]
+    errors = np.array(np.array(best_model_mape)[:,1:2].T)[0]
+    draw_best_model('evaluation', x, y, labels, errors,'matching_time_best_model', trip_time)
+    labels=np.array(np.array(best_model)[:,2:3].T)[0]
+    errors = np.array(np.array(best_model_mape)[:,2:3].T)[0]
+    draw_best_model('evaluation', x, y, labels, errors, 'pickup_time_best_model', trip_time)
+    labels=np.array(np.array(best_model)[:,3:4].T)[0]
+    errors = np.array(np.array(best_model_mape)[:,3:4].T)[0]
+    draw_best_model('evaluation', x, y, labels, errors, 'waiting_time_best_model', trip_time)
 
 
 if __name__ == "__main__":
@@ -259,57 +376,8 @@ if __name__ == "__main__":
     # production_func_params = get_production_func_params()
     model_list = ['Perfect Matching','FCFS','Cobb-Douglas Production Function','M/M/1 Queuing Model', 'M/M/1/k Queuing Model', 'M/M/N Queuing Model','Batch Matching']
 
-    result_path = '../../simulator/Result/'
-    files= os.listdir(result_path)
-    files.sort()
-    time = []
-    files_list = [item for item in files if 'drivers_200_record' in item]
-    for file in files_list:
-        result = pickle.load(open(result_path + file, 'rb'))
-        time.append(result['trip_time'])
-    trip_time = int(np.array(time).mean())
+    draw_evaluation()
+    draw_raw_simulator()
+    # draw_best_model_raw_simulaor()
+    # draw_best_model_evaluation()
 
-    print('finish loading files', files_list)
-
-    # orders = []
-    # drivers = []
-    # best_model = []
-    # best_model_mape = []
-    # for file in files_list:
-    #     result = pickle.load(open(result_path + file, 'rb'))
-    #     if float(file.split('_')[1])/2 > result['fleet_size']/trip_time:
-    #         pass
-    #     else:
-    #         orders.append(float(file.split('_')[1]))
-    #         drivers.append(float(file.split('_')[3]))
-    #         m, m_e = get_best_model(result)
-    #         best_model.append(list(m))
-    #         best_model_mape.append(list(m_e))
-    # print('finish loading best_model')
-    #
-    # x=np.array(orders)/2
-    # y=np.array(drivers)
-    #
-    # print(best_model)
-    # print(best_model_mape)
-    #
-    # labels=np.array(np.array(best_model)[:,:1].T)[0]
-    # errors = np.array(np.array(best_model_mape)[:,:1].T)[0]
-    # draw_best_model(x, y, labels,errors, 'matching_rate_best_model')
-    # labels=np.array(np.array(best_model)[:,1:2].T)[0]
-    # errors = np.array(np.array(best_model_mape)[:,1:2].T)[0]
-    # draw_best_model(x, y, labels, errors,'matching_time_best_model')
-    # labels=np.array(np.array(best_model)[:,2:3].T)[0]
-    # errors = np.array(np.array(best_model_mape)[:,2:3].T)[0]
-    # draw_best_model(x, y, labels, errors, 'pickup_time_best_model')
-    # labels=np.array(np.array(best_model)[:,3:4].T)[0]
-    # errors = np.array(np.array(best_model_mape)[:,3:4].T)[0]
-    # draw_best_model(x, y, labels, errors, 'waiting_time_best_model')
-
-    print(trip_time)
-
-    # draw_one_picture('fix_driver', 200, trip_time)
-    # draw_one_picture('fix_order', 0.2, trip_time)
-    for driver_num in range(200, 2200, 200):
-        draw_true_road_network_simulator_picture(result_path,
-                                             'fix_driver', driver_num, trip_time)

@@ -51,8 +51,11 @@ def delete_none_order():
 
 
 if __name__ == '__main__':
+    # file = pickle.load(open('./Result/orders_1.0_drivers_1000_record.pickle', 'rb'))
+    file = pickle.load(open('../evaluation/simulator_evaluation/Results/orders_6.2_drivers_1000_record.pickle', 'rb'))
+    print(file)
     # delete_none_order()
-    calculate_match_rate()
+    # calculate_match_rate()
     # t = np.array([1,2,3,4])
     # x = (t.cumsum()>10).argmax()
     # print(x)

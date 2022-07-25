@@ -16,7 +16,8 @@ if __name__ == "__main__":
     print('driver_num', driver_num)
     print('order_sample_frac', order_sample_frac)
 
-    driver_num = [1000]
+    driver_num = [2000]
+    create_driver()
 
     # track的格式为[{'driver_1' : [[lng, lat, status, time_a], [lng, lat, status, time_b]],
     # 'driver_2' : [[lng, lat, status, time_a], [lng, lat, status, time_b]]},
@@ -31,7 +32,6 @@ if __name__ == "__main__":
                     env_params['pickup_dis_threshold'] = single_max_distance_num
                     env_params['delta_t'] = single_time_interval
                     env_params['request_interval'] = single_time_interval
-                    create_driver()
                     create_records()
 
                     simulator = Simulator(**env_params)

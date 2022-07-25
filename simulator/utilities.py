@@ -132,6 +132,20 @@ def distance_array(coord_1, coord_2):
     return np.array(manhattan_dis)
 
 
+def line_distance_on_earth_array(coord_1, coord_2):
+    coord_1 = np.array(coord_1).astype(float)
+    coord_2 = np.array(coord_2).astype(float)
+    coord_1_array = np.radians(coord_1)
+    coord_2_array = np.radians(coord_2)
+    dlon = coord_2_array[:, 0] - coord_1_array[:, 0]
+    dlat = coord_2_array[:, 1] - coord_1_array[:, 1]
+    a = np.sin(dlat / 2) ** 2 + np.cos(coord_1_array[:, 1]) * np.cos(coord_2_array[:, 1]) * np.sin(dlon / 2) ** 2
+    c = 2 * np.arcsin(a ** 0.5)
+    r = 6371
+    distance = c * r
+    return distance
+
+
 def get_distance_array(origin_coord_array, dest_coord_array):
     """
     :param origin_coord_array: list of coordinates
@@ -500,7 +514,8 @@ def order_dispatch(wait_requests, driver_table, maximal_pickup_distance=950, dis
             # itinerary_node_list, itinerary_segment_dis_list, dis_array = route_generation_array(request_array[:, :2],
             #                                                                                     driver_loc_array[:, :2],
             #                                                                                   mode='drop_end')
-            dis_array = distance_array(request_array[:, :2], driver_loc_array[:, :2])
+            # dis_array = distance_array(request_array[:, :2], driver_loc_array[:, :2])
+            dis_array = line_distance_on_earth_array(request_array[:, :2], driver_loc_array[:, :2])
             flag = np.where(dis_array <= maximal_pickup_distance)[0]
             if len(flag) > 0:
                 order_driver_pair = np.vstack(

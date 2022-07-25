@@ -186,7 +186,17 @@ if __name__ == '__main__':
     # file = pickle.load(open(path, 'rb'))
     # print(file)
     # calculate_metrics_passenger(path)
-    save_dir = './Result'
-    if not os.path.exists(save_dir):
-        os.mkdir(save_dir)
-    generate_simulator_evaluation_data(save_dir)
+    # save_dir = './Result'
+    # if not os.path.exists(save_dir):
+    #     os.mkdir(save_dir)
+    # generate_simulator_evaluation_data(save_dir)
+    order = pickle.load(open('./input/order.pickle', 'rb'))
+    current_num = 0
+    for i in range(36000, 79200, 5):
+        for j in range(0, 5):
+            if (i+j) in order.keys():
+                current_num += len(order[i+j])
+        if i == 39600:
+
+            print(current_num)
+            break
