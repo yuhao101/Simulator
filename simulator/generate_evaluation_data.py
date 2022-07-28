@@ -146,6 +146,7 @@ def calculate_metrics_passenger(record_path):
                         break
                 temp_data.append(matching_time - order_to_time[record[0][2]])
                 temp_data.append(pickup_end_time - matching_time)
+                print(pickup_end_time - matching_time)
                 temp_data.append(record[-1][-1] - pickup_end_time)
                 data.append(temp_data)
     data = np.array(data)
@@ -157,10 +158,11 @@ def generate_simulator_evaluation_data(save_dir):
     # print("订单总数目：", count)
     result_path = './new_experiment/ma_rg_cruise=True/'
     driver_dir_list = os.listdir(result_path)
-    # driver_dir_list = [item for item in driver_dir_list if item.startswith('driver_num_200')]
+    # driver_dir_list = [item for item in driver_dir_list if item.startswith('driver')]
     for driver_dir in driver_dir_list:
         driver_num = driver_dir.split('_')[2]
         sample_dir_list = os.listdir(result_path+driver_dir)
+        # sample_dir_list = [item for item in sample_dir_list if item.startswith('sample')]
         for sample_dir in sample_dir_list:
             sample_frac = float(sample_dir.split('_')[2])
             record_path = result_path+driver_dir+'/'+sample_dir+'/records'
@@ -186,17 +188,14 @@ if __name__ == '__main__':
     # file = pickle.load(open(path, 'rb'))
     # print(file)
     # calculate_metrics_passenger(path)
-    # save_dir = './Result'
-    # if not os.path.exists(save_dir):
-    #     os.mkdir(save_dir)
-    # generate_simulator_evaluation_data(save_dir)
-    order = pickle.load(open('./input/order.pickle', 'rb'))
-    current_num = 0
-    for i in range(36000, 79200, 5):
-        for j in range(0, 5):
-            if (i+j) in order.keys():
-                current_num += len(order[i+j])
-        if i == 39600:
-
-            print(current_num)
-            break
+    save_dir = './Result/'
+    if not os.path.exists(save_dir):
+        os.mkdir(save_dir)
+    generate_simulator_evaluation_data(save_dir)
+    # for order in range(1, 11):
+    #     info = pickle.load(open('./Result/orders_'+str(order/10)+'_drivers_1200_record.pickle', 'rb'))
+    #     print(info)
+    #     print(info['matching_rate'])
+    #     info = pickle.load(open('../evaluation/simulator_evaluation/Results/orders_' + str(round(order / 10*6.2, 2)) + '_drivers_1200_record.pickle', 'rb'))
+    #     print(info)
+    #     print(info['matching_rate'])

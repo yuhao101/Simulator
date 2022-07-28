@@ -13,12 +13,12 @@ import os
 if __name__ == "__main__":
     driver_num = [int(2000*i/10) for i in range(1, 11)]
     order_sample_frac = [i/10 for i in range(1, 11)]
-    max_distance_num = [2]
+    max_distance_num = [1]
     # max_distance_num = [i/2 for i in range(1, 11, 1)]
     # time_interval = [i for i in range(5, 55, 5)]
     time_interval = [5]
-    driver_num = [1000]
-    order_sample_frac = [1]
+    # driver_num = [1000]
+    # order_sample_frac = [1]
     print('max_distance_num', max_distance_num)
     print('time_interval', time_interval)
     print('driver_num', driver_num)
@@ -53,9 +53,13 @@ if __name__ == "__main__":
                                     track_record.append(new_tracks)
 
                                 match_and_cancel_track_list = simulator.match_and_cancel_track
-                                file_path = './new_experiment/' + pc_flag + "_" + dl_flag + "_" + "cruise="+str(cr_flag)\
-                                            + '/driver_num_' + str(single_driver_num) + '/sample_frac_' + \
-                                            str(single_order_sample_frac)
+                                file_path = './final_experiment/' + pc_flag + "_" + dl_flag + "_" + "cruise="+str(cr_flag)
+                                if not os.path.exists(file_path):
+                                    os.makedirs(file_path)
+                                file_path += '/driver_num_' + str(single_driver_num)
+                                if not os.path.exists(file_path):
+                                    os.makedirs(file_path)
+                                file_path += '/sample_frac_' + str(single_order_sample_frac)
                                 if not os.path.exists(file_path):
                                     os.makedirs(file_path)
                                 if not os.path.exists(file_path+'/records'):
