@@ -156,7 +156,7 @@ def calculate_metrics_passenger(record_path):
 def generate_simulator_evaluation_data(save_dir):
 
     # print("订单总数目：", count)
-    result_path = './new_experiment/ma_rg_cruise=True/'
+    result_path = './final_experiment/ma_rg_cruise=True/'
     driver_dir_list = os.listdir(result_path)
     # driver_dir_list = [item for item in driver_dir_list if item.startswith('driver')]
     for driver_dir in driver_dir_list:
