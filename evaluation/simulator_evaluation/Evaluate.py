@@ -5,10 +5,11 @@ import pickle
 import numpy as np
 from scipy import optimize
 from scipy.optimize import least_squares
-
+import sys
 result_path = 'Results/'
-area=10000*10000
-speed=11.11
+area=35000*35000
+speed=6.33
+
 
 def get_real_data(result):
     res = {}
@@ -18,18 +19,21 @@ def get_real_data(result):
     res['waiting_time'] = result['effective_orders_total_waiting_time']
     return res
 
-def get_model_result_perfect_matching(result):
-    Q = result['total_requests']/result['total_time']
+def get_model_result_perfect_matching(result,q):
+    # Q = result['total_requests']/result['total_time']
     Tv = result['fleet_size']/result['trip_time']
     model_res = {}
-    model_res['matching_rate'] = min(Q, Tv)
+    # print('q',Q)
+    # print('tv',Tv)
+    model_res['matching_rate'] = min(q, Tv)
     model_res['matching_time'] = 0
     model_res['pickup_time'] = 0
     model_res['waiting_time'] = 0
+    # sys.exit()
     return model_res
 
-def get_model_result_mm1(result):
-    Q = result['total_requests']/result['total_time']
+def get_model_result_mm1(result,q):
+    Q = q
     Tv = result['fleet_size']/result['trip_time']
     model_res = {}
     if Q>=Tv:
@@ -39,15 +43,15 @@ def get_model_result_mm1(result):
         model_res['waiting_time'] = -1
     else:
         model_res['matching_rate']  = Q
-        model_res['matching_time'] = Q/(Tv*(Tv-Q))
+        model_res['matching_time'] = Q/(Tv*(Tv-Q)) + 5
         model_res['pickup_time'] = 0
         model_res['waiting_time'] = model_res['matching_time']
     return model_res
 
-def get_model_result_mm1k(result):
+def get_model_result_mm1k(result,q):
     mp.dps = 300
     k = result['max_waiting_orders']
-    Q = result['total_requests']/result['total_time'] # lambda
+    Q = q # lambda
     Tv = result['fleet_size']/result['trip_time'] # miu
     r = Q/Tv
     model_res = {}
@@ -56,8 +60,8 @@ def get_model_result_mm1k(result):
     Pn = ((1-mpf(r))/(1-pow(mpf(r), k+1)))*pow(mpf(r), k)
     Ls = mpf(r)/(1-mpf(r))-((k+1)*pow(mpf(r), k+1))/(1-pow(mpf(r), k+1))
     Lq = Ls -1 +P0
-    model_res['matching_rate'] = round(Q*(1-Pn), 6)
-    model_res['matching_time'] = round(Lq/(Q*(1-Pn)), 2)
+    model_res['matching_rate'] = round(Q*(1-Pn), 2)
+    model_res['matching_time'] = round(Lq/(Q*(1-Pn)), 2) + 5
     model_res['pickup_time'] = 0
     model_res['waiting_time'] = model_res['matching_time']
     return model_res
@@ -70,8 +74,8 @@ def equations_of_ns_market_FCFS(Var, *decision_variables):
     e2 = wp - d_ratio /(2 * v * ((Nv/A) ** 0.5))
     return e1, e2
 
-def get_model_result_fcfs(result):
-    Q = result['total_requests']/result['total_time']
+def get_model_result_fcfs(result,q):
+    Q = q
     t = result['trip_time']
     N = result['fleet_size']
     v = result['speed']
@@ -89,9 +93,9 @@ def get_model_result_fcfs(result):
         model_res['pickup_time'] = -1
         model_res['waiting_time'] = -1
     else:
-        model_res['matching_rate'] = result['total_requests']/result['total_time']
+        model_res['matching_rate'] = Q
         model_res['matching_time'] = 0
-        model_res['pickup_time'] = res.x[1]
+        model_res['pickup_time'] = res.x[1] + 5
         model_res['waiting_time'] = model_res['pickup_time']
     return model_res
 
@@ -123,8 +127,8 @@ def equations_of_ns_market_BM(Var, *decision_variables):
     return e1, e2, e3
 
 
-def get_model_result_batch_matching(result):
-    Q = result['total_requests']/result['total_time']
+def get_model_result_batch_matching(result,q):
+    Q = q
     N = result['fleet_size']
     t = result['trip_time']
     decision_variables = (Q, N, t)
@@ -137,16 +141,16 @@ def get_model_result_batch_matching(result):
         model_res['pickup_time'] = -1
         model_res['waiting_time'] = -1
     else:
-        model_res['matching_rate'] = result['total_requests']/result['total_time']
-        model_res['matching_time'] = res.x[1]
+        model_res['matching_rate'] = Q
+        model_res['matching_time'] = res.x[1] + 5
         model_res['pickup_time'] = res.x[2]
         model_res['waiting_time'] = model_res['matching_time']+model_res['pickup_time']
     return model_res
 
-def cal_matching_time_for_mmn(result):
+def cal_matching_time_for_mmn(result, q):
     mp.dps = 300
 
-    lamda = result['total_requests']/result['total_time'] # Q
+    lamda = q # Q
     u = 1/result['trip_time']
     c = result['fleet_size']
     r = lamda / u
@@ -161,16 +165,16 @@ def cal_matching_time_for_mmn(result):
     queueing_time = round(prob_0 * mpf(r)**(c) / gamma(c+1) / (c*u) / (1-rou)**2, 10)
     return queueing_time
 
-def get_model_result_mmn(result):
+def get_model_result_mmn(result,q):
     model_res = {}
-    if result['total_requests']/result['total_time']>=result['fleet_size']/result['trip_time']:
+    if q>=result['fleet_size']/result['trip_time']:
         model_res['matching_rate'] = -1
         model_res['matching_time'] = -1
         model_res['pickup_time'] = -1
         model_res['waiting_time'] = -1
     else:
-        model_res['matching_rate'] = result['total_requests']/result['total_time']
-        model_res['matching_time'] = cal_matching_time_for_mmn(result)
+        model_res['matching_rate'] = q
+        model_res['matching_time'] = cal_matching_time_for_mmn(result, q) + 5
         model_res['pickup_time'] = 0
         model_res['waiting_time'] = model_res['matching_time']
     return model_res
@@ -190,7 +194,7 @@ def get_production_func_params():
     collected_data = []
     for file in files_list:
         f = pickle.load(open(result_path + file, 'rb'))
-        collected_data.append([f['vacant_vehicles'], f['mean_waiting_orders'], f['total_requests'] /f['total_time']])
+        collected_data.append([f['vacant_vehicles'], f['mean_waiting_orders'], float(file.split('_')[1])* 7.275 / 5])
     ln_collected_data = np.log(collected_data)
     ln_Nv = np.array(ln_collected_data[:, :1]).T[0]
     ln_Nc = np.array(ln_collected_data[:, 1:2]).T[0]
@@ -200,13 +204,14 @@ def get_production_func_params():
     func_param[2] = np.exp(func_param[2])
     return func_param
 
-def get_model_result_production_function(result):
-    Q = result['total_requests']/result['total_time']
+def get_model_result_production_function(result,q):
+    Q = q
     N = result['fleet_size']
     t = result['trip_time']
     decision_variables = (Q, N, t)
-    res = least_squares(equations_of_ns_market_CD, (N / 2, 0), bounds=((0, 0), (N+1, 1000)),
+    res = least_squares(equations_of_ns_market_CD, (N/2, 0), bounds=((0, 0), (N+1, 1000)),
                         args=decision_variables)
+
     model_res = {}
     if abs(res.fun[1]) > 0.01: # 无解
         model_res['matching_rate'] = -1
@@ -215,9 +220,10 @@ def get_model_result_production_function(result):
         model_res['waiting_time'] = -1
     else:
         model_res['matching_rate'] = Q
-        model_res['matching_time'] = res.x[1]
+        model_res['matching_time'] = res.x[1]+5
         model_res['pickup_time'] = 0
         model_res['waiting_time'] = model_res['matching_time']
+
     return model_res
 
 

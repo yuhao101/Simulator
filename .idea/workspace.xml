@@ -1,19 +1,155 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3d8d90a-5d9c-4563-bfa9-2f83e0955b5d" name="Default Changelist" comment="" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <list default="true" id="f3d8d90a-5d9c-4563-bfa9-2f83e0955b5d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/hongkong_simulator/driver_info_generate.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Simulator.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Simulator.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluation/simulator_evaluation/Draw_diagram.py" beforeDir="false" afterPath="$PROJECT_DIR$/evaluation/simulator_evaluation/Draw_diagram.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluation/simulator_evaluation/Evaluate.py" beforeDir="false" afterPath="$PROJECT_DIR$/evaluation/simulator_evaluation/Evaluate.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluation/simulator_evaluation/drivers.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/evaluation/simulator_evaluation/drivers.pickle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluation/simulator_evaluation/requests.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/evaluation/simulator_evaluation/requests.pickle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulator/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulator/.ipynb_checkpoints/Untitled-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulator/.vscode/launch.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulator/TJTest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulator/config.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulator/data_generation.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulator/dispatch_alg.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulator/driver_generation.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulator/driver_info.pickle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulator/find_closest_point.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulator/generate_evaluation_data.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulator/handle_raw_data.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulator/input/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulator/input/dataset.pickle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulator/input/driver_info.pickle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulator/input/driver_info_distribution.pickle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulator/input/graph.graphml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulator/input/order.pickle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulator/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulator/new_experiment/rg_rg_cruise=False/driver_num_2000/sample_frac_1.0/match_and_cancel/match_and_cacel_2000.pickle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulator/new_experiment/rg_rg_cruise=False/driver_num_2000/sample_frac_1.0/passengers/passenger_records_driver_num_2000.pickle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulator/new_experiment/rg_rg_cruise=False/driver_num_2000/sample_frac_1.0/records/records_max_distance_0.5_time_interval_5.pickle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulator/new_experiment/rg_rg_cruise=False/driver_num_2000/sample_frac_1.0/time_statistic.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulator/nyu_data_handle.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulator/order_generation.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulator/passenger_reader.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulator/path.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulator/road_network_information_generate.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulator/sarsa.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulator/simulator_env.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulator/simulator_pattern.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulator/statistic.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulator/test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulator/test2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulator/toy_records_price.pickle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulator/utilities.py" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>get_best_model</find>
+      <find>matching_time</find>
+      <find>co</find>
+      <find>cobb</find>
+      <find>model_res['matching_time']</find>
+      <find>pymong</find>
+      <find>./input/hongkong_processed_order</find>
+      <find>driver_</find>
+      <find>hongkong_processed_order</find>
+      <find>driver_table['end_time']</find>
+      <find>end_time</find>
+      <find>sampled_requests</find>
+      <find>request_databases</find>
+      <find>self.request_all</find>
+      <find>driver_table['status']</find>
+      <find>self.reposition_flag</find>
+      <find>driver_sample_ratio</find>
+      <find>self.driver_info</find>
+      <find>self.driver_columns</find>
+      <find>order_driver_flag</find>
+      <find>cruise_mode</find>
+      <find>print</find>
+      <find>self.cruise_mode</find>
+      <find>vehicle_speed</find>
+      <find>maximal_pickup_distance</find>
+      <find>3600</find>
+      <find>grid_value</find>
+      <find>real_time_track_recording</find>
+      <find>self.wait_requests['maximum_wait_time']</find>
+      <find>['maximum_wait_time']</find>
+    </findStrings>
+    <replaceStrings>
+      <replace />
+      <replace>./input/hongkong_processed_order.pickle</replace>
+      <replace>taxiweek_20090802</replace>
+    </replaceStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$/evaluation</dir>
+      <dir>$PROJECT_DIR$/simulator</dir>
+      <dir>$PROJECT_DIR$/evaluation/simulator_evaluation</dir>
+      <dir>$PROJECT_DIR$</dir>
+    </dirStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/evaluation/simulator_evaluation/path.py" />
+        <option value="$PROJECT_DIR$/simulator/new_experiment/generate_evaluation_data.py" />
+        <option value="$PROJECT_DIR$/simulator/simulator_env.py" />
+        <option value="$PROJECT_DIR$/simulator/handle_raw_data.py" />
+        <option value="$PROJECT_DIR$/evaluation/simulator_evaluation/Create_Records.py" />
+        <option value="$PROJECT_DIR$/simulator/utilities.py" />
+        <option value="$PROJECT_DIR$/evaluation/simulator_evaluation/main.py" />
+        <option value="$PROJECT_DIR$/simulator/test.py" />
+        <option value="$PROJECT_DIR$/simulator/config.py" />
+        <option value="$PROJECT_DIR$/evaluation/simulator_evaluation/config.py" />
+        <option value="$PROJECT_DIR$/simulator/main.py" />
+        <option value="$PROJECT_DIR$/evaluation/simulator_evaluation/Evaluate.py" />
+        <option value="$PROJECT_DIR$/simulator/generate_evaluation_data.py" />
+        <option value="$PROJECT_DIR$/evaluation/simulator_evaluation/Draw_diagram.py" />
+        <option value="$PROJECT_DIR$/hongkong_simulator/simulator_pattern.py" />
+        <option value="$PROJECT_DIR$/hongkong_simulator/driver_info_generate.py" />
+        <option value="$PROJECT_DIR$/hongkong_simulator/generate_evaluation_data.py" />
+        <option value="$USER_HOME$/代考/After 8.16/11.23/test.py" />
+        <option value="$USER_HOME$/代考/After 8.16/11.23/project/UploadedProject/efficient.py" />
+        <option value="$PROJECT_DIR$/hongkong_simulator/test2.py" />
+        <option value="$PROJECT_DIR$/hongkong_simulator/simulator_env.py" />
+        <option value="$PROJECT_DIR$/hongkong_simulator/main.py" />
+        <option value="$PROJECT_DIR$/hongkong_simulator/config.py" />
+        <option value="$PROJECT_DIR$/hongkong_simulator/utilities.py" />
+      </list>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="y" value="25" />
     <option name="width" value="1680" />
-    <option name="height" value="1050" />
+    <option name="height" value="945" />
+  </component>
+  <component name="ProjectId" id="2NNJVFSuZYzVX5SNrQ86qWwCUU2" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -24,13 +160,19 @@
         <subPane>
           <expand>
             <path>
-              <item name="Simulator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Simulator" type="462c0819:PsiDirectoryNode" />
+              <item name="HongKong_simulator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="HongKong_simulator" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Simulator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Simulator" type="462c0819:PsiDirectoryNode" />
-              <item name="simulator" type="462c0819:PsiDirectoryNode" />
+              <item name="HongKong_simulator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="HongKong_simulator" type="462c0819:PsiDirectoryNode" />
+              <item name="hongkong_simulator" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="HongKong_simulator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="HongKong_simulator" type="462c0819:PsiDirectoryNode" />
+              <item name="hongkong_simulator" type="462c0819:PsiDirectoryNode" />
+              <item name="input" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -39,26 +181,137 @@
       <pane id="Scope" />
     </panes>
   </component>
-  <component name="PropertiesComponent">
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
-    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;last_opened_file_path&quot;: &quot;/Users/zhangyuhao/PycharmProjects/Final_RA/HongKong_simulator/HongKong_simulator&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  }
+}</component>
+  <component name="RunManager" selected="Python.test (1)">
+    <configuration name="generate_evaluation_data" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Simulator" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/hongkong_simulator" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hongkong_simulator/generate_evaluation_data.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main (2)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Simulator" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/hongkong_simulator" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hongkong_simulator/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Simulator" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/hongkong_simulator" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hongkong_simulator/test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Simulator" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$USER_HOME$/代考/After 8.16/11.23" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$USER_HOME$/代考/After 8.16/11.23/test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Simulator" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/hongkong_simulator" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hongkong_simulator/test2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
       <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
+        <item itemvalue="Python.test (1)" />
+        <item itemvalue="Python.main (2)" />
+        <item itemvalue="Python.test2" />
+        <item itemvalue="Python.test" />
+        <item itemvalue="Python.generate_evaluation_data" />
       </list>
-    </option>
+    </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -70,41 +323,435 @@
       <option name="presentableId" value="Default" />
       <updated>1655103057339</updated>
       <workItem from="1655103062607" duration="330000" />
+      <workItem from="1657077107935" duration="29000" />
+      <workItem from="1657165859170" duration="9310000" />
+      <workItem from="1657360400463" duration="12926000" />
+      <workItem from="1657438534266" duration="1497000" />
+      <workItem from="1657445526464" duration="4573000" />
+      <workItem from="1657453622194" duration="204000" />
+      <workItem from="1657454140800" duration="3635000" />
+      <workItem from="1657595460283" duration="5502000" />
+      <workItem from="1657610569764" duration="525000" />
+      <workItem from="1658148527374" duration="285000" />
+      <workItem from="1658417125802" duration="1463000" />
+      <workItem from="1658458773130" duration="4825000" />
+      <workItem from="1658482404576" duration="102000" />
+      <workItem from="1658499604926" duration="592000" />
+      <workItem from="1658500321997" duration="3888000" />
+      <workItem from="1658556255214" duration="2368000" />
+      <workItem from="1658716408614" duration="2811000" />
+      <workItem from="1658740027032" duration="2354000" />
+      <workItem from="1658753296692" duration="10628000" />
+      <workItem from="1658989562745" duration="9880000" />
+      <workItem from="1659015600832" duration="51000" />
+      <workItem from="1659015732138" duration="2088000" />
+      <workItem from="1659684090161" duration="3393000" />
+      <workItem from="1660020180411" duration="174000" />
+      <workItem from="1660029335584" duration="390000" />
+      <workItem from="1660202297266" duration="39000" />
+      <workItem from="1661239417581" duration="582000" />
+      <workItem from="1662443234470" duration="428000" />
+      <workItem from="1663133389482" duration="3088000" />
+      <workItem from="1663210954405" duration="692000" />
+      <workItem from="1664338393254" duration="1654000" />
+      <workItem from="1664671931056" duration="2423000" />
+      <workItem from="1664978122143" duration="39000" />
+      <workItem from="1665103976161" duration="1722000" />
+      <workItem from="1665206643643" duration="217000" />
+      <workItem from="1665208941487" duration="633000" />
+      <workItem from="1665212730238" duration="7000" />
+      <workItem from="1665662672856" duration="185000" />
+      <workItem from="1665663064040" duration="76000" />
+      <workItem from="1666010957226" duration="736000" />
+      <workItem from="1666075826773" duration="105000" />
+      <workItem from="1666079704856" duration="357000" />
+      <workItem from="1666891302843" duration="460000" />
+      <workItem from="1667024089572" duration="358000" />
+      <workItem from="1667273055655" duration="5535000" />
+      <workItem from="1667467917144" duration="21386000" />
+      <workItem from="1667910331050" duration="7951000" />
+      <workItem from="1668259225620" duration="444000" />
+      <workItem from="1668657371806" duration="6867000" />
+      <workItem from="1668862378695" duration="182000" />
+      <workItem from="1669182403018" duration="3135000" />
+      <workItem from="1669280706534" duration="2668000" />
+      <workItem from="1669733318842" duration="2987000" />
+      <workItem from="1670142054135" duration="601000" />
+      <workItem from="1670147167137" duration="444000" />
+      <workItem from="1670155307291" duration="5642000" />
+      <workItem from="1670941621260" duration="4953000" />
+      <workItem from="1675515670294" duration="296000" />
+      <workItem from="1677683387346" duration="826000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="330000" />
+    <option name="totallyTimeSpent" value="161541000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <layout>
-      <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24969475" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2783883" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Python Console" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.6094527" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39925373" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Database" />
-      <window_info anchor="right" id="R Packages" />
-      <window_info anchor="right" id="SciView" />
-      <window_info anchor="right" id="R Graphics" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.15298508" />
+      <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" weight="0.33516484" />
+      <window_info anchor="right" id="R Graphics" order="4" />
+      <window_info anchor="right" id="R Packages" order="5" />
+      <window_info anchor="right" id="Database" order="6" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/evaluation/simulator_evaluation/Figures/fix_order/Matching rate_fix_order=0.02.jpg" />
+    <entry file="file://$PROJECT_DIR$/evaluation/simulator_evaluation/Figures/fix_driver/Matching rate_fix_driver=200.jpg" />
+    <entry file="file://$USER_HOME$/Library/Containers/com.tencent.xinWeChat/Data/Library/Application Support/com.tencent.xinWeChat/2.0b4.0.9/681eba184c06fe001b99085537ee4110/Message/MessageTemp/80c4ceb3fc7c24beb3a74d254905ddcb/File/simulator-matching-function-validation-main/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="9" column="8" lean-forward="true" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/evaluation/simulator_evaluation/path.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="4" column="14" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda3/envs/RA/lib/python3.7/random.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/evaluation/simulator_evaluation/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="74">
+          <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#67#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/evaluation/simulator_evaluation/utilities.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3216">
+          <caret line="134" column="58" selection-start-line="134" selection-start-column="37" selection-end-line="134" selection-end-column="58" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/evaluation/simulator_evaluation/dispatch_alg.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="30" column="67" selection-start-line="30" selection-start-column="52" selection-end-line="30" selection-end-column="67" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/evaluation/simulator_evaluation/simulator_env.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3120">
+          <caret line="130" column="92" selection-start-line="130" selection-start-column="92" selection-end-line="130" selection-end-column="92" />
+          <folding>
+            <element signature="e#0#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simulator/test.py" />
+    <entry file="file://$PROJECT_DIR$/simulator/driver_generation.py" />
+    <entry file="file://$PROJECT_DIR$/evaluation/simulator_evaluation/Create_Drivers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="14" column="74" selection-start-line="14" selection-start-column="70" selection-end-line="14" selection-end-column="74" />
+          <folding>
+            <element signature="e#0#52#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simulator/utilities.py" />
+    <entry file="file://$PROJECT_DIR$/evaluation/simulator_evaluation/Create_Records.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1440">
+          <caret line="63" column="38" selection-start-line="63" selection-start-column="33" selection-end-line="63" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#52#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda3/envs/RA/lib/python3.7/site-packages/matplotlib/figure.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="62472">
+          <caret line="2627" column="8" selection-start-line="2627" selection-start-column="8" selection-end-line="2627" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda3/envs/RA/lib/python3.7/site-packages/matplotlib/pyplot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68424">
+          <caret line="2858" column="4" selection-start-line="2858" selection-start-column="4" selection-end-line="2858" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simulator/config.py" />
+    <entry file="file://$PROJECT_DIR$/evaluation/simulator_evaluation/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="18" column="33" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simulator/main.py" />
+    <entry file="file://$PROJECT_DIR$/simulator/simulator_pattern.py" />
+    <entry file="file://$PROJECT_DIR$/simulator/generate_evaluation_data.py" />
+    <entry file="file://$PROJECT_DIR$/simulator/handle_raw_data.py" />
+    <entry file="file://$PROJECT_DIR$/simulator/simulator_env.py" />
+    <entry file="file://$PROJECT_DIR$/evaluation/simulator_evaluation/Draw_diagram.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7392">
+          <caret line="315" column="34" selection-start-line="315" selection-start-column="34" selection-end-line="315" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+            <marker date="1664344993774" expanded="true" signature="12580:12654" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hongkong_simulator/statistic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hongkong_simulator/TJTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/evaluation/simulator_evaluation/Evaluate.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1824">
+          <caret line="76" column="4" selection-start-line="76" selection-start-column="4" selection-end-line="76" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda3/envs/RA/lib/python3.7/site-packages/scipy/optimize/_lsq/least_squares.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6168">
+          <caret line="269" column="40" selection-start-line="267" selection-start-column="9" selection-end-line="269" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hongkong_simulator/handle_raw_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="984">
+          <caret line="41" column="11" selection-start-line="41" selection-start-column="11" selection-end-line="41" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hongkong_simulator/nyu_data_handle.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hongkong_simulator/order_generation.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hongkong_simulator/passenger_reader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hongkong_simulator/find_closest_point.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="22" column="13" selection-start-line="22" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hongkong_simulator/road_network_information_generate.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda3/envs/RA/lib/python3.7/site-packages/osmnx/distance.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="11400">
+          <caret line="488" column="4" selection-start-line="488" selection-start-column="4" selection-end-line="488" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hongkong_simulator/data_generation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hongkong_simulator/driver_info.pickle">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hongkong_simulator/dispatch_alg.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1176">
+          <caret line="52" column="42" selection-start-line="52" selection-start-column="42" selection-end-line="52" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/代考/After 8.16/11.23/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="84" column="26" selection-start-line="84" selection-start-column="26" selection-end-line="84" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hongkong_simulator/driver_generation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1800">
+          <caret line="75" column="55" selection-start-line="75" selection-start-column="55" selection-end-line="75" selection-end-column="55" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda3/envs/RA/lib/python3.7/site-packages/pandas/core/generic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="33168">
+          <caret line="1537" selection-start-line="1537" selection-end-line="1537" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hongkong_simulator/simulator_pattern.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="533">
+          <caret line="31" column="28" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hongkong_simulator/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hongkong_simulator/test2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="8" column="36" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hongkong_simulator/generate_evaluation_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="682">
+          <caret line="151" column="15" selection-start-line="151" selection-start-column="15" selection-end-line="151" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/代考/After 8.16/11.23/project/UploadedProject/efficient.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="91" column="23" selection-start-line="91" selection-start-column="23" selection-end-line="91" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hongkong_simulator/driver_info_generate.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="12" column="10" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
+          <folding>
+            <element signature="e#165#178#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hongkong_simulator/simulator_env.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7608">
+          <caret line="320" column="60" selection-start-line="320" selection-start-column="60" selection-end-line="320" selection-end-column="60" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hongkong_simulator/utilities.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="20" selection-start-line="19" selection-end-line="20" />
+          <folding>
+            <element signature="e#55#73#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hongkong_simulator/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="37" column="10" lean-forward="true" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hongkong_simulator/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-875">
+          <caret line="15" column="20" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>
